@@ -1,0 +1,49 @@
+#include <iostream>
+#include <limits>
+#include <string>
+using namespace std;
+
+class RestringirDatos {
+public:
+    void RestringirDatosNum(int&n){
+        cout<<"Ingrese solo datos numericos: ";
+        while (!(cin>>n)) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            cout<<"Dato ingresado no valido. Ingrese solo datos numéricos: ";
+        }
+    }
+
+    void RestringirDatosString(string&p){
+        cout << "Ingrese solo caracteres: ";
+        while(true) {
+            cin >> p;
+            bool valid = true;
+            for(char c:p){
+                if (!isalpha(c)) {
+                    valid =false;
+                    break;
+                }
+            }
+            if (valid) {
+                break;
+            } else {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                cout << "Dato ingresado no valido. Ingrese solo caracteres: ";
+            }
+        }
+    }
+};
+
+int main() {
+    RestringirDatos restringir;
+    int num;
+    restringir.RestringirDatosNum(num);
+    
+    string palabra;
+    restringir.RestringirDatosString(palabra);
+   
+
+    return 0;
+}
